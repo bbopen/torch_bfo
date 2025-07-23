@@ -1,50 +1,102 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel", "setuptools_scm[toml]>=6.2"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pytorch_bfo_optimizer"
-dynamic = ["version"]
-authors = [{ name = "Brett Bonner", email = "brett.bonner@example.com" }]
-description = "Bacterial Foraging Optimization (BFO) for PyTorch 2.8+ with torch.compile support"
-readme = {file = "README.rst", content-type = "text/x-rst"}
-requires-python = ">=3.10"
+name = "bfo-torch"
+version = "1.0.0"
+description = "PyTorch Bacterial Foraging Optimizer - Biologically-inspired optimization for deep learning"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "Brett G. Bonner"}
+]
 classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers", 
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9", 
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Framework :: PyTorch",
 ]
+keywords = ["pytorch", "optimizer", "bfo", "bacterial", "foraging", "optimization", "machine", "learning", "deep", "learning"]
+requires-python = ">=3.8"
 dependencies = [
-    "torch>=2.8.0",
-    "numpy>=1.24.0",
+    "torch>=1.9.0",
+    "numpy>=1.19.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0.0",
+    "pytest-cov>=2.10.0", 
+    "black>=21.0.0",
+    "isort>=5.0.0",
+    "flake8>=3.8.0",
+    "mypy>=0.800",
+]
+examples = [
+    "matplotlib>=3.3.0",
+    "scikit-learn>=0.24.0", 
+    "torchvision>=0.10.0",
+]
+docs = [
+    "sphinx>=4.0.0",
+    "sphinx-rtd-theme>=0.5.0",
+    "myst-parser>=0.15.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/brettbonner/pytorch-bfo-optimizer"
-Issues = "https://github.com/brettbonner/pytorch-bfo-optimizer/issues"
-Documentation = "https://brettbonner.github.io/pytorch-bfo-optimizer"
+Homepage = "https://github.com/bbopen/torch_bfo"
+Documentation = "https://github.com/bbopen/torch_bfo/wiki"
+Repository = "https://github.com/bbopen/torch_bfo"
+"Bug Tracker" = "https://github.com/bbopen/torch_bfo/issues"
 
-[tool.setuptools_scm]
-write_to = "pytorch_bfo_optimizer/_version.py"
+[project.scripts]
+bfo-torch-benchmark = "bfo_torch.examples.benchmark:main"
+
+[tool.setuptools]
+packages = ["bfo_torch"]
 
 [tool.black]
-line-length = 100
-target-version = ['py310', 'py311', 'py312', 'py313']
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.8"
 warn_return_any = true
 warn_unused_configs = true
-ignore_missing_imports = true
+disallow_untyped_defs = true
 
 [tool.pytest.ini_options]
-minversion = "7.0"
-testpaths = ["tests"]
-pythonpath = ["."]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = [
+    "tests",
+]

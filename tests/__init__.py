@@ -1,1 +1,1 @@
-# Tests package for pytorch_bfo_optimizer
+"""Test suite for torch-bfo optimizer."""
