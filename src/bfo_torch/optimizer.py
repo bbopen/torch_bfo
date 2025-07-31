@@ -176,10 +176,13 @@ class BFO(Optimizer):
         dtype = first_param.dtype
         
         # Initialize population around current parameters
-        population = torch.randn(
-            population_size, param_vector.numel(),
-            device=self.device, dtype=dtype
-        ) * group['step_size_max']
+        population = (
+            param_vector.unsqueeze(0) +
+            torch.randn(
+                population_size, param_vector.numel(),
+                device=self.device, dtype=dtype
+            ) * group['step_size_max']
+        )
         population[0] = param_vector.clone()  # Include current parameters
         
         # Store state
