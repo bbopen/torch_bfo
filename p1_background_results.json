@@ -1,0 +1,879 @@
+{
+  "P0_Enhanced_BFO": {
+    "name": "P0_Enhanced_BFO",
+    "config": {
+      "population_size": 50,
+      "lr": 0.01,
+      "chemotaxis_steps": 10,
+      "reproduction_steps": 5,
+      "elimination_steps": 2,
+      "elimination_prob": 0.4,
+      "step_size_max": 1.0,
+      "levy_alpha": 1.8,
+      "enable_swarming": true,
+      "swim_length": 5
+    },
+    "num_runs": 10,
+    "success_rate": 0.2,
+    "final_loss_mean": 389.0894805908203,
+    "final_loss_std": 332.7138351013628,
+    "final_loss_min": -138.1763916015625,
+    "individual_runs": [
+      {
+        "seed": 1000,
+        "initial_loss": 1085.725830078125,
+        "final_loss": 830.0752563476562,
+        "success": false,
+        "function_evaluations": 49792,
+        "final_position": [
+          5.234607696533203,
+          5.251071929931641
+        ],
+        "distance_to_optimum": 587.9251098632812
+      },
+      {
+        "seed": 1001,
+        "initial_loss": 632.4457397460938,
+        "final_loss": 414.5450744628906,
+        "success": false,
+        "function_evaluations": 49747,
+        "final_position": [
+          -124.83090209960938,
+          -302.5337829589844
+        ],
+        "distance_to_optimum": 906.2852172851562
+      },
+      {
+        "seed": 1002,
+        "initial_loss": 632.607421875,
+        "final_loss": -138.1763916015625,
+        "success": true,
+        "function_evaluations": 49785,
+        "final_position": [
+          -500.0,
+          420.9558410644531
+        ],
+        "distance_to_optimum": 920.9686889648438
+      },
+      {
+        "seed": 1003,
+        "initial_loss": 993.7137451171875,
+        "final_loss": -19.73809814453125,
+        "success": true,
+        "function_evaluations": 49705,
+        "final_position": [
+          -500.0,
+          -302.52508544921875
+        ],
+        "distance_to_optimum": 1171.16455078125
+      },
+      {
+        "seed": 1004,
+        "initial_loss": 611.7454833984375,
+        "final_loss": 296.10687255859375,
+        "success": false,
+        "function_evaluations": 49761,
+        "final_position": [
+          420.949462890625,
+          -124.80667877197266
+        ],
+        "distance_to_optimum": 545.775390625
+      },
+      {
+        "seed": 1005,
+        "initial_loss": 864.3541870117188,
+        "final_loss": 513.24658203125,
+        "success": false,
+        "function_evaluations": 49789,
+        "final_position": [
+          203.77774047851562,
+          -124.8263168334961
+        ],
+        "distance_to_optimum": 587.4215087890625
+      },
+      {
+        "seed": 1006,
+        "initial_loss": 508.18927001953125,
+        "final_loss": 236.876708984375,
+        "success": false,
+        "function_evaluations": 49715,
+        "final_position": [
+          -302.5169982910156,
+          -302.53167724609375
+        ],
+        "distance_to_optimum": 1023.1737060546875
+      },
+      {
+        "seed": 1007,
+        "initial_loss": 925.6937255859375,
+        "final_loss": 830.0751953125,
+        "success": false,
+        "function_evaluations": 49708,
+        "final_position": [
+          5.2446441650390625,
+          5.2407355308532715
+        ],
+        "distance_to_optimum": 587.9253540039062
+      },
+      {
+        "seed": 1008,
+        "initial_loss": 903.40673828125,
+        "final_loss": 236.876708984375,
+        "success": false,
+        "function_evaluations": 49707,
+        "final_position": [
+          -302.5170593261719,
+          -302.5408020019531
+        ],
+        "distance_to_optimum": 1023.18017578125
+      },
+      {
+        "seed": 1009,
+        "initial_loss": 805.2870483398438,
+        "final_loss": 691.0068969726562,
+        "success": false,
+        "function_evaluations": 49748,
+        "final_position": [
+          -124.8589859008789,
+          -25.902196884155273
+        ],
+        "distance_to_optimum": 705.4229125976562
+      }
+    ]
+  },
+  "P1_Chaotic_BFO": {
+    "name": "P1_Chaotic_BFO",
+    "config": {
+      "population_size": 50,
+      "lr": 0.01,
+      "chemotaxis_steps": 10,
+      "reproduction_steps": 5,
+      "elimination_steps": 2,
+      "elimination_prob": 0.4,
+      "step_size_max": 1.0,
+      "levy_alpha": 1.8,
+      "enable_swarming": true,
+      "enable_chaos": true,
+      "chaos_strength": 0.5,
+      "diversity_trigger_ratio": 0.5,
+      "enable_crossover": true,
+      "diversity_threshold_decay": 0.9,
+      "swim_length": 5
+    },
+    "num_runs": 10,
+    "success_rate": 0.0,
+    "final_loss_mean": 378.11374816894534,
+    "final_loss_std": 226.7212733904828,
+    "final_loss_min": 74.0426025390625,
+    "individual_runs": [
+      {
+        "seed": 1000,
+        "initial_loss": 1085.725830078125,
+        "final_loss": 217.14166259765625,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          420.86053466796875,
+          203.7525177001953
+        ],
+        "distance_to_optimum": 217.2161865234375
+      },
+      {
+        "seed": 1001,
+        "initial_loss": 632.4457397460938,
+        "final_loss": 418.5025939941406,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -124.58307647705078,
+          -308.1073303222656
+        ],
+        "distance_to_optimum": 910.5924682617188
+      },
+      {
+        "seed": 1002,
+        "initial_loss": 632.607421875,
+        "final_loss": 415.7652587890625,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          4.543215274810791,
+          423.20245361328125
+        ],
+        "distance_to_optimum": 416.43145751953125
+      },
+      {
+        "seed": 1003,
+        "initial_loss": 993.7137451171875,
+        "final_loss": 830.0751953125,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.241992950439453,
+          5.233630657196045
+        ],
+        "distance_to_optimum": 587.9322509765625
+      },
+      {
+        "seed": 1004,
+        "initial_loss": 611.7454833984375,
+        "final_loss": 329.22967529296875,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          437.1883239746094,
+          -123.73685455322266
+        ],
+        "distance_to_optimum": 544.9469604492188
+      },
+      {
+        "seed": 1005,
+        "initial_loss": 864.3541870117188,
+        "final_loss": 74.0426025390625,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          434.8937683105469,
+          440.93109130859375
+        ],
+        "distance_to_optimum": 24.339378356933594
+      },
+      {
+        "seed": 1006,
+        "initial_loss": 508.18927001953125,
+        "final_loss": 250.3602294921875,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -292.1383972167969,
+          -302.46417236328125
+        ],
+        "distance_to_optimum": 1015.8133544921875
+      },
+      {
+        "seed": 1007,
+        "initial_loss": 925.6937255859375,
+        "final_loss": 271.30364990234375,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          -293.6455993652344,
+          455.39752197265625
+        ],
+        "distance_to_optimum": 715.443115234375
+      },
+      {
+        "seed": 1008,
+        "initial_loss": 903.40673828125,
+        "final_loss": 283.70941162109375,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          216.66281127929688,
+          440.0990295410156
+        ],
+        "distance_to_optimum": 205.19955444335938
+      },
+      {
+        "seed": 1009,
+        "initial_loss": 805.2870483398438,
+        "final_loss": 691.0072021484375,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -124.85102081298828,
+          -25.820716857910156
+        ],
+        "distance_to_optimum": 705.3651123046875
+      }
+    ]
+  },
+  "P1_NoGA": {
+    "name": "P1_NoGA",
+    "config": {
+      "population_size": 50,
+      "lr": 0.01,
+      "chemotaxis_steps": 10,
+      "reproduction_steps": 5,
+      "elimination_steps": 2,
+      "elimination_prob": 0.4,
+      "step_size_max": 1.0,
+      "levy_alpha": 1.8,
+      "enable_swarming": true,
+      "enable_chaos": true,
+      "chaos_strength": 0.5,
+      "diversity_trigger_ratio": 0.5,
+      "enable_crossover": false,
+      "diversity_threshold_decay": 0.9,
+      "swim_length": 5
+    },
+    "num_runs": 10,
+    "success_rate": 0.0,
+    "final_loss_mean": 335.02747497558596,
+    "final_loss_std": 158.52362388262867,
+    "final_loss_min": 118.93896484375,
+    "individual_runs": [
+      {
+        "seed": 1000,
+        "initial_loss": 1085.725830078125,
+        "final_loss": 166.5958251953125,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          436.9703063964844,
+          -291.1778564453125
+        ],
+        "distance_to_optimum": 712.3262939453125
+      },
+      {
+        "seed": 1001,
+        "initial_loss": 632.4457397460938,
+        "final_loss": 428.3916931152344,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -120.44703674316406,
+          -312.0150451660156
+        ],
+        "distance_to_optimum": 911.2607421875
+      },
+      {
+        "seed": 1002,
+        "initial_loss": 632.607421875,
+        "final_loss": 252.64447021484375,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -500.0,
+          439.82989501953125
+        ],
+        "distance_to_optimum": 921.1618041992188
+      },
+      {
+        "seed": 1003,
+        "initial_loss": 993.7137451171875,
+        "final_loss": 334.76336669921875,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          431.6584167480469,
+          -138.65330505371094
+        ],
+        "distance_to_optimum": 559.72412109375
+      },
+      {
+        "seed": 1004,
+        "initial_loss": 611.7454833984375,
+        "final_loss": 342.8603515625,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          433.9473876953125,
+          -110.3447036743164
+        ],
+        "distance_to_optimum": 531.471923828125
+      },
+      {
+        "seed": 1005,
+        "initial_loss": 864.3541870117188,
+        "final_loss": 304.2772216796875,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          -131.33709716796875,
+          425.5978698730469
+        ],
+        "distance_to_optimum": 552.3251953125
+      },
+      {
+        "seed": 1006,
+        "initial_loss": 508.18927001953125,
+        "final_loss": 296.19140625,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -285.6299743652344,
+          -288.5472412109375
+        ],
+        "distance_to_optimum": 1001.3463134765625
+      },
+      {
+        "seed": 1007,
+        "initial_loss": 925.6937255859375,
+        "final_loss": 414.54803466796875,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          -124.8245849609375,
+          -302.6783142089844
+        ],
+        "distance_to_optimum": 906.3968505859375
+      },
+      {
+        "seed": 1008,
+        "initial_loss": 903.40673828125,
+        "final_loss": 118.93896484375,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          -304.2374267578125,
+          419.9580993652344
+        ],
+        "distance_to_optimum": 725.2068481445312
+      },
+      {
+        "seed": 1009,
+        "initial_loss": 805.2870483398438,
+        "final_loss": 691.0634155273438,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -125.37493896484375,
+          -25.519672393798828
+        ],
+        "distance_to_optimum": 705.580078125
+      }
+    ]
+  },
+  "P1_NoChaos": {
+    "name": "P1_NoChaos",
+    "config": {
+      "population_size": 50,
+      "lr": 0.01,
+      "chemotaxis_steps": 10,
+      "reproduction_steps": 5,
+      "elimination_steps": 2,
+      "elimination_prob": 0.4,
+      "step_size_max": 1.0,
+      "levy_alpha": 1.8,
+      "enable_swarming": true,
+      "enable_chaos": false,
+      "chaos_strength": 0.0,
+      "diversity_trigger_ratio": 0.5,
+      "enable_crossover": true,
+      "diversity_threshold_decay": 0.9,
+      "swim_length": 5
+    },
+    "num_runs": 10,
+    "success_rate": 0.0,
+    "final_loss_mean": 439.91591186523436,
+    "final_loss_std": 286.18187995655774,
+    "final_loss_min": 16.29107666015625,
+    "individual_runs": [
+      {
+        "seed": 1000,
+        "initial_loss": 1085.725830078125,
+        "final_loss": 830.0751953125,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.2418928146362305,
+          5.24362850189209
+        ],
+        "distance_to_optimum": 587.92529296875
+      },
+      {
+        "seed": 1001,
+        "initial_loss": 632.4457397460938,
+        "final_loss": 414.60772705078125,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -124.25247955322266,
+          -302.9201354980469
+        ],
+        "distance_to_optimum": 906.24560546875
+      },
+      {
+        "seed": 1002,
+        "initial_loss": 632.607421875,
+        "final_loss": 415.513916015625,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.247538089752197,
+          422.9109191894531
+        ],
+        "distance_to_optimum": 415.7256774902344
+      },
+      {
+        "seed": 1003,
+        "initial_loss": 993.7137451171875,
+        "final_loss": 543.9340209960938,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.397773265838623,
+          -293.3907165527344
+        ],
+        "distance_to_optimum": 826.4432983398438
+      },
+      {
+        "seed": 1004,
+        "initial_loss": 611.7454833984375,
+        "final_loss": 331.57806396484375,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          437.7971496582031,
+          -125.06592559814453
+        ],
+        "distance_to_optimum": 546.2938842773438
+      },
+      {
+        "seed": 1005,
+        "initial_loss": 864.3541870117188,
+        "final_loss": 830.0751953125,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.243965148925781,
+          5.239821910858154
+        ],
+        "distance_to_optimum": 587.926513671875
+      },
+      {
+        "seed": 1006,
+        "initial_loss": 508.18927001953125,
+        "final_loss": 243.75848388671875,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -296.0827331542969,
+          -298.90032958984375
+        ],
+        "distance_to_optimum": 1016.05810546875
+      },
+      {
+        "seed": 1007,
+        "initial_loss": 925.6937255859375,
+        "final_loss": 16.29107666015625,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          414.17938232421875,
+          430.09521484375
+        ],
+        "distance_to_optimum": 11.37489128112793
+      },
+      {
+        "seed": 1008,
+        "initial_loss": 903.40673828125,
+        "final_loss": 82.3177490234375,
+        "success": false,
+        "function_evaluations": 50025,
+        "final_position": [
+          444.66510009765625,
+          431.03607177734375
+        ],
+        "distance_to_optimum": 25.746301651000977
+      },
+      {
+        "seed": 1009,
+        "initial_loss": 805.2870483398438,
+        "final_loss": 691.0076904296875,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -124.85635375976562,
+          -25.958036422729492
+        ],
+        "distance_to_optimum": 705.4562377929688
+      }
+    ]
+  },
+  "P1_NoDiversity": {
+    "name": "P1_NoDiversity",
+    "config": {
+      "population_size": 50,
+      "lr": 0.01,
+      "chemotaxis_steps": 10,
+      "reproduction_steps": 5,
+      "elimination_steps": 2,
+      "elimination_prob": 0.4,
+      "step_size_max": 1.0,
+      "levy_alpha": 1.8,
+      "enable_swarming": true,
+      "enable_chaos": true,
+      "chaos_strength": 0.5,
+      "diversity_trigger_ratio": 0.0,
+      "enable_crossover": true,
+      "diversity_threshold_decay": 0.9,
+      "swim_length": 5
+    },
+    "num_runs": 10,
+    "success_rate": 0.0,
+    "final_loss_mean": 625.5240936279297,
+    "final_loss_std": 242.4158000206033,
+    "final_loss_min": 250.3602294921875,
+    "individual_runs": [
+      {
+        "seed": 1000,
+        "initial_loss": 1085.725830078125,
+        "final_loss": 830.0751953125,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.233922958374023,
+          5.238414764404297
+        ],
+        "distance_to_optimum": 587.9345703125
+      },
+      {
+        "seed": 1001,
+        "initial_loss": 632.4457397460938,
+        "final_loss": 418.5025939941406,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -124.58307647705078,
+          -308.1073303222656
+        ],
+        "distance_to_optimum": 910.5924682617188
+      },
+      {
+        "seed": 1002,
+        "initial_loss": 632.607421875,
+        "final_loss": 415.7652587890625,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          4.543215274810791,
+          423.20245361328125
+        ],
+        "distance_to_optimum": 416.43145751953125
+      },
+      {
+        "seed": 1003,
+        "initial_loss": 993.7137451171875,
+        "final_loss": 830.0751953125,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.241992950439453,
+          5.233630657196045
+        ],
+        "distance_to_optimum": 587.9322509765625
+      },
+      {
+        "seed": 1004,
+        "initial_loss": 611.7454833984375,
+        "final_loss": 329.22967529296875,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          437.1883239746094,
+          -123.73685455322266
+        ],
+        "distance_to_optimum": 544.9469604492188
+      },
+      {
+        "seed": 1005,
+        "initial_loss": 864.3541870117188,
+        "final_loss": 830.0751953125,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.2348127365112305,
+          5.235781192779541
+        ],
+        "distance_to_optimum": 587.9358520507812
+      },
+      {
+        "seed": 1006,
+        "initial_loss": 508.18927001953125,
+        "final_loss": 250.3602294921875,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -292.1383972167969,
+          -302.46417236328125
+        ],
+        "distance_to_optimum": 1015.8133544921875
+      },
+      {
+        "seed": 1007,
+        "initial_loss": 925.6937255859375,
+        "final_loss": 830.0751953125,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.232916355133057,
+          5.237812042236328
+        ],
+        "distance_to_optimum": 587.9356689453125
+      },
+      {
+        "seed": 1008,
+        "initial_loss": 903.40673828125,
+        "final_loss": 830.0751953125,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          5.244802951812744,
+          5.241334915161133
+        ],
+        "distance_to_optimum": 587.9248046875
+      },
+      {
+        "seed": 1009,
+        "initial_loss": 805.2870483398438,
+        "final_loss": 691.0072021484375,
+        "success": false,
+        "function_evaluations": 50000,
+        "final_position": [
+          -124.85102081298828,
+          -25.820716857910156
+        ],
+        "distance_to_optimum": 705.3651123046875
+      }
+    ]
+  },
+  "P1_All_100k": {
+    "name": "P1_All_100k",
+    "config": {
+      "population_size": 50,
+      "lr": 0.01,
+      "chemotaxis_steps": 10,
+      "reproduction_steps": 5,
+      "elimination_steps": 2,
+      "elimination_prob": 0.4,
+      "step_size_max": 1.0,
+      "levy_alpha": 1.8,
+      "enable_swarming": true,
+      "enable_chaos": true,
+      "chaos_strength": 0.5,
+      "diversity_trigger_ratio": 0.5,
+      "enable_crossover": true,
+      "diversity_threshold_decay": 0.9,
+      "swim_length": 5
+    },
+    "num_runs": 10,
+    "success_rate": 0.1,
+    "final_loss_mean": 203.98116760253907,
+    "final_loss_std": 147.8912743133603,
+    "final_loss_min": 0.0,
+    "individual_runs": [
+      {
+        "seed": 1000,
+        "initial_loss": 1085.725830078125,
+        "final_loss": 0.0003662109375,
+        "success": false,
+        "function_evaluations": 100050,
+        "final_position": [
+          420.9921875,
+          420.91986083984375
+        ],
+        "distance_to_optimum": 0.05418825522065163
+      },
+      {
+        "seed": 1001,
+        "initial_loss": 632.4457397460938,
+        "final_loss": 414.5450439453125,
+        "success": false,
+        "function_evaluations": 100000,
+        "final_position": [
+          -124.8376235961914,
+          -302.52960205078125
+        ],
+        "distance_to_optimum": 906.2860107421875
+      },
+      {
+        "seed": 1002,
+        "initial_loss": 632.607421875,
+        "final_loss": 415.0376281738281,
+        "success": false,
+        "function_evaluations": 100000,
+        "final_position": [
+          5.230251789093018,
+          420.9603271484375
+        ],
+        "distance_to_optimum": 415.7384338378906
+      },
+      {
+        "seed": 1003,
+        "initial_loss": 993.7137451171875,
+        "final_loss": 118.4383544921875,
+        "success": false,
+        "function_evaluations": 100025,
+        "final_position": [
+          420.9678039550781,
+          -302.5102233886719
+        ],
+        "distance_to_optimum": 723.4788818359375
+      },
+      {
+        "seed": 1004,
+        "initial_loss": 611.7454833984375,
+        "final_loss": 296.10675048828125,
+        "success": false,
+        "function_evaluations": 100000,
+        "final_position": [
+          420.9640808105469,
+          -124.82534790039062
+        ],
+        "distance_to_optimum": 545.7940673828125
+      },
+      {
+        "seed": 1005,
+        "initial_loss": 864.3541870117188,
+        "final_loss": 0.0,
+        "success": true,
+        "function_evaluations": 100025,
+        "final_position": [
+          420.9524230957031,
+          420.96844482421875
+        ],
+        "distance_to_optimum": 0.016267701983451843
+      },
+      {
+        "seed": 1006,
+        "initial_loss": 508.18927001953125,
+        "final_loss": 236.87664794921875,
+        "success": false,
+        "function_evaluations": 100075,
+        "final_position": [
+          -302.5262145996094,
+          -302.5353088378906
+        ],
+        "distance_to_optimum": 1023.1827392578125
+      },
+      {
+        "seed": 1007,
+        "initial_loss": 925.6937255859375,
+        "final_loss": 118.4383544921875,
+        "success": false,
+        "function_evaluations": 100025,
+        "final_position": [
+          -302.5340270996094,
+          420.9561462402344
+        ],
+        "distance_to_optimum": 723.502685546875
+      },
+      {
+        "seed": 1008,
+        "initial_loss": 903.40673828125,
+        "final_loss": 217.1396484375,
+        "success": false,
+        "function_evaluations": 100025,
+        "final_position": [
+          203.8123321533203,
+          420.9682312011719
+        ],
+        "distance_to_optimum": 217.15635681152344
+      },
+      {
+        "seed": 1009,
+        "initial_loss": 805.2870483398438,
+        "final_loss": 223.2288818359375,
+        "success": false,
+        "function_evaluations": 100025,
+        "final_position": [
+          414.0283508300781,
+          204.38815307617188
+        ],
+        "distance_to_optimum": 216.69171142578125
+      }
+    ]
+  }
+}

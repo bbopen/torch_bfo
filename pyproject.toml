@@ -54,16 +54,16 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/bbopen/torch_bfo"
-Documentation = "https://github.com/bbopen/torch_bfo/wiki"
-Repository = "https://github.com/bbopen/torch_bfo"
-"Bug Tracker" = "https://github.com/bbopen/torch_bfo/issues"
+Homepage = "https://github.com/bbopen/bfo_torch"
+Documentation = "https://github.com/bbopen/bfo_torch/wiki"
+Repository = "https://github.com/bbopen/bfo_torch"
+"Bug Tracker" = "https://github.com/bbopen/bfo_torch/issues"
 
 [project.scripts]
-bfo-torch-benchmark = "bfo_torch.examples.benchmark:main"
+# bfo-torch-benchmark = "bfo_torch.examples.benchmark:main"
 
-[tool.setuptools]
-packages = ["bfo_torch"]
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.black]
 line-length = 88

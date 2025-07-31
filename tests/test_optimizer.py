@@ -170,6 +170,58 @@ class TestBFO:
         assert len(optimizer.param_groups) == 2
         assert optimizer.param_groups[0]['lr'] == 0.01
         assert optimizer.param_groups[1]['lr'] == 0.001
+    
+    def test_parameter_movement(self, model, data):
+        """Test that optimizer actually changes parameters."""
+        X, y = data
+        optimizer = BFO(model.parameters(), lr=0.01, population_size=10)
+        
+        # Store original parameters
+        old_params = [p.clone() for p in model.parameters()]
+        
+        def closure():
+            optimizer.zero_grad()
+            output = model(X)
+            loss = F.mse_loss(output, y)
+            return loss.item()
+        
+        # Run optimization
+        optimizer.step(closure)
+        
+        # Check that at least one parameter changed
+        params_changed = False
+        for old_p, new_p in zip(old_params, model.parameters()):
+            if not torch.allclose(old_p, new_p):
+                params_changed = True
+                break
+        
+        assert params_changed, "Optimizer did not change any parameters"
+    
+    def test_early_stopping(self, model):
+        """Test that early stopping triggers correctly."""
+        optimizer = BFO(
+            model.parameters(), 
+            lr=0.01, 
+            population_size=5,
+            chemotaxis_steps=1,
+            reproduction_steps=1,
+            elimination_steps=1,
+            early_stopping=True,
+            convergence_patience=2
+        )
+        
+        # Constant closure to force stagnation
+        def closure():
+            return 1.0
+        
+        # Run enough steps to trigger early stopping
+        for _ in range(5):
+            optimizer.step(closure)
+        
+        # Check that stagnation count has increased
+        group_id = id(optimizer.param_groups[0])
+        assert group_id in optimizer.state
+        assert optimizer.state[group_id]['stagnation_count'] >= 2
 
 
 class TestAdaptiveBFO:
@@ -202,6 +254,95 @@ class TestAdaptiveBFO:
         
         loss = optimizer.step(closure)
         assert isinstance(loss, float)
+
+    def test_population_growth_on_stagnation(self, model, data):
+        """Test that population size grows on stagnation."""
+        optimizer = AdaptiveBFO(
+            model.parameters(),
+            population_size=10,
+            min_population_size=5,
+            max_population_size=20,
+            adaptation_rate=0.5
+        )
+
+        stagnation_closure = lambda: 1.0
+        initial_pop_size = optimizer.param_groups[0]['population_size']
+
+        for _ in range(6): 
+            optimizer.step(stagnation_closure)
+
+        final_pop_size = optimizer.param_groups[0]['population_size']
+        assert final_pop_size > initial_pop_size, "Population should grow on stagnation"
+        assert final_pop_size <= optimizer.max_population_size
+
+    def test_population_shrinking_on_progress(self, model, data):
+        """Test that population size shrinks on progress."""
+        X, y = data
+        optimizer = AdaptiveBFO(
+            model.parameters(),
+            population_size=20, # Start at max
+            min_population_size=5,
+            max_population_size=20,
+            adaptation_rate=0.5
+        )
+        
+        # Simulate consistent progress
+        initial_pop_size = optimizer.param_groups[0]['population_size']
+
+        for i in range(6):
+            optimizer.step(lambda: 1.0 / (i + 1))
+
+        final_pop_size = optimizer.param_groups[0]['population_size']
+        assert final_pop_size < initial_pop_size, "Population should shrink on progress"
+        assert final_pop_size >= optimizer.min_population_size
+    
+    def test_state_dict_round_trip(self, model, data):
+        """Test state dictionary save/load for AdaptiveBFO."""
+        X, y = data
+        optimizer = AdaptiveBFO(
+            model.parameters(), 
+            lr=0.01, 
+            population_size=10,
+            adaptation_rate=0.2
+        )
+        
+        # Run a few steps to build up state
+        def closure():
+            optimizer.zero_grad()
+            output = model(X)
+            loss = F.mse_loss(output, y)
+            return loss.item()
+        
+        for _ in range(3):
+            optimizer.step(closure)
+        
+        # Save state
+        state_dict = optimizer.state_dict()
+        
+        # Create new optimizer with different parameters
+        new_optimizer = AdaptiveBFO(
+            model.parameters(), 
+            lr=0.02,  # Different lr
+            population_size=20,  # Different population
+            adaptation_rate=0.5  # Different adaptation rate
+        )
+        
+        # Load state
+        new_optimizer.load_state_dict(state_dict)
+        
+        # Check that parameters were restored
+        assert new_optimizer.param_groups[0]['lr'] == 0.01
+        assert new_optimizer.param_groups[0]['population_size'] == 10
+        
+        # Check that state was preserved
+        old_group_id = id(optimizer.param_groups[0])
+        new_group_id = id(new_optimizer.param_groups[0])
+        
+        if old_group_id in optimizer.state and new_group_id in new_optimizer.state:
+            old_state = optimizer.state[old_group_id]
+            new_state = new_optimizer.state[new_group_id]
+            assert torch.allclose(old_state['best_params'], new_state['best_params'])
+            assert old_state['best_fitness'] == new_state['best_fitness']
 
 
 class TestHybridBFO:
@@ -249,6 +390,85 @@ class TestHybridBFO:
         
         loss = optimizer.step(closure)
         assert isinstance(loss, float)
+    
+    def test_state_dict_round_trip(self, model, data):
+        """Test state dictionary save/load for HybridBFO."""
+        X, y = data
+        optimizer = HybridBFO(
+            model.parameters(), 
+            lr=0.01, 
+            gradient_weight=0.5,
+            momentum=0.9,
+            enable_momentum=True
+        )
+        
+        # Run a few steps with gradients to build up state
+        def closure():
+            optimizer.zero_grad()
+            output = model(X)
+            loss = F.mse_loss(output, y)
+            loss.backward()  # Compute gradients
+            return loss.item()
+        
+        for _ in range(3):
+            optimizer.step(closure)
+        
+        # Save state
+        state_dict = optimizer.state_dict()
+        
+        # Create new optimizer with different parameters
+        new_optimizer = HybridBFO(
+            model.parameters(), 
+            lr=0.02,
+            gradient_weight=0.3,
+            momentum=0.8
+        )
+        
+        # Load state
+        new_optimizer.load_state_dict(state_dict)
+        
+        # Check that parameters were restored
+        assert new_optimizer.param_groups[0]['lr'] == 0.01
+        
+        # Check momentum buffer exists if momentum was enabled
+        group_id = id(new_optimizer.param_groups[0])
+        if group_id in new_optimizer.state and 'momentum_buffer' in new_optimizer.state[group_id]:
+            assert new_optimizer.state[group_id]['momentum_buffer'] is not None
+    
+    def test_gradient_correctness(self):
+        """Test that HybridBFO follows gradient direction correctly."""
+        # Simple quadratic function: f(x) = x^2
+        # Gradient: f'(x) = 2x
+        x = nn.Parameter(torch.tensor([2.0]))
+        
+        optimizer = HybridBFO(
+            [x], 
+            lr=0.1,
+            gradient_weight=1.0,  # Full gradient weight
+            population_size=1,    # Single particle
+            enable_momentum=False # No momentum for clarity
+        )
+        
+        def closure():
+            optimizer.zero_grad()
+            loss = x ** 2
+            loss.backward()
+            return loss.item()
+        
+        # Store initial value
+        x_init = x.item()
+        
+        # Take one step
+        optimizer.step(closure)
+        
+        # With gradient_weight=1.0, it should move in negative gradient direction
+        # For x=2, gradient=4, so it should move by -lr*gradient = -0.1*4 = -0.4
+        # Expected new x ≈ 2.0 - 0.4 = 1.6 (approximately, due to BFO stochasticity)
+        x_new = x.item()
+        
+        # Check that x moved in the correct direction (towards 0)
+        assert x_new < x_init, f"Parameter should decrease from {x_init} but got {x_new}"
+        assert abs(x_new) < abs(x_init), "Parameter should move towards optimum (0)"
 
 
 class TestOptimizationFunctions:

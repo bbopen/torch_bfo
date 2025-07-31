@@ -1,0 +1,144 @@
+{
+  "mathematical_correctness": {
+    "Sphere": {
+      "initial_loss": 33.38226318359375,
+      "final_loss": 1.9116470184599166e-08,
+      "best_loss": 1.9116470184599166e-08,
+      "convergence_steps": 6,
+      "distance_to_optimum": 0.00013826232321040345,
+      "success": true,
+      "improvement_ratio": 0.9999999994273465,
+      "special_handling_used": false
+    },
+    "Rosenbrock": {
+      "initial_loss": 523.7335815429688,
+      "final_loss": 8.447875006822869e-05,
+      "best_loss": 8.447875006822869e-05,
+      "convergence_steps": 5,
+      "distance_to_optimum": 0.008790012071928931,
+      "success": true,
+      "improvement_ratio": 0.9999998386990007,
+      "special_handling_used": false
+    },
+    "Schwefel": {
+      "initial_loss": 99.85862135854927,
+      "final_loss": 3.5212779039284214e-05,
+      "best_loss": 3.5212779039284214e-05,
+      "convergence_steps": 1,
+      "distance_to_optimum": 0.008795119744675657,
+      "success": true,
+      "improvement_ratio": 0.9999996473736713,
+      "special_handling_used": true
+    },
+    "Shekel_Foxholes": {
+      "initial_loss": 499.9991149902344,
+      "final_loss": 12.67050552368164,
+      "best_loss": 12.67050552368164,
+      "convergence_steps": 7,
+      "distance_to_optimum": 45.1862477204393,
+      "success": true,
+      "improvement_ratio": 0.9746589440984729,
+      "special_handling_used": true
+    },
+    "Branin": {
+      "initial_loss": 28.049114227294922,
+      "final_loss": 0.3983421325683594,
+      "best_loss": 0.3983421325683594,
+      "convergence_steps": 1,
+      "distance_to_optimum": 11.821184024085246,
+      "success": true,
+      "improvement_ratio": 0.985798405990991,
+      "special_handling_used": false
+    },
+    "Goldstein_Price": {
+      "initial_loss": 111.88832092285156,
+      "final_loss": 3.0627150535583496,
+      "best_loss": 3.0627150535583496,
+      "convergence_steps": 1,
+      "distance_to_optimum": 0.012216175620092293,
+      "success": true,
+      "improvement_ratio": 0.9726270353483083,
+      "special_handling_used": true
+    }
+  },
+  "high_dimensional": {
+    "5D": {
+      "initial_loss": 4.338826656341553,
+      "final_loss": 0.00019812185200862586,
+      "optimization_time": 0.2946131229400635,
+      "success": true,
+      "improvement_ratio": 0.9999543374585571,
+      "tolerance_used": 0.0002
+    },
+    "10D": {
+      "initial_loss": 69.69721221923828,
+      "final_loss": 0.001008698483929038,
+      "optimization_time": 1.4275860786437988,
+      "success": true,
+      "improvement_ratio": 0.9999855274199382,
+      "tolerance_used": 0.0001
+    },
+    "15D": {
+      "initial_loss": 76.24539947509766,
+      "final_loss": 0.032057154923677444,
+      "optimization_time": 2.6611499786376953,
+      "success": true,
+      "improvement_ratio": 0.9995795529285127,
+      "tolerance_used": 6.666666666666667e-05
+    },
+    "20D": {
+      "initial_loss": 88.09902954101562,
+      "final_loss": 0.012485045939683914,
+      "optimization_time": 2.698391914367676,
+      "success": true,
+      "improvement_ratio": 0.9998582839560807,
+      "tolerance_used": 5e-05
+    }
+  },
+  "schwefel_strategies": {
+    "Standard_BFO": {
+      "initial_loss": 258.2630615234375,
+      "final_loss": 7.6898193359375,
+      "best_loss": 7.6898193359375,
+      "success": true,
+      "improvement_ratio": 0.9702248579778427,
+      "best_position": [
+        420.5404052734375,
+        428.7635803222656
+      ]
+    },
+    "Large_Population": {
+      "initial_loss": 558.9326171875,
+      "final_loss": 0.0001220703125,
+      "best_loss": 0.0001220703125,
+      "success": true,
+      "improvement_ratio": 0.9999997816010218,
+      "best_position": [
+        420.9438781738281,
+        420.9602966308594
+      ]
+    },
+    "Adaptive_BFO": {
+      "initial_loss": 51.995849609375,
+      "final_loss": 0.0,
+      "best_loss": 0.0,
+      "success": true,
+      "improvement_ratio": 1.0,
+      "best_position": [
+        420.9617004394531,
+        420.97259521484375
+      ]
+    }
+  },
+  "summary": {
+    "total_tests": 13,
+    "successful_tests": 13,
+    "success_rate": 1.0,
+    "new_benchmarks_successful": 3,
+    "new_benchmarks_tested": 3,
+    "schwefel_improved": true,
+    "max_dimension_successful": 20,
+    "total_execution_time": 18.748968839645386,
+    "verification_passed": true
+  }
+}

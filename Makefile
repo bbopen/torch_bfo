@@ -1,5 +1,7 @@
 .PHONY: help clean test lint type-check docs build install dev-install
 
+VENV_PYTHON = .venv/bin/python3
+
 help:
 	@echo "Available commands:"
 	@echo "  make install      Install the package"
@@ -12,34 +14,31 @@ help:
 	@echo "  make clean        Clean build artifacts"
 
 install:
-	pip install .
+	$(VENV_PYTHON) -m pip install .
 
 dev-install:
-	pip install -e ".[dev]"
+	$(VENV_PYTHON) -m pip install -e ".[dev,examples,docs]"
 
 test:
-	pytest tests/ -v --cov=pytorch_bfo_optimizer --cov-report=html --cov-report=term
+	$(VENV_PYTHON) -m pytest tests/ -v --cov=src/bfo_torch --cov-report=html --cov-report=term
 
 lint:
-	black --check pytorch_bfo_optimizer tests examples
-	flake8 pytorch_bfo_optimizer tests examples
+	$(VENV_PYTHON) -m black --check src/bfo_torch tests examples
+	$(VENV_PYTHON) -m flake8 src/bfo_torch tests examples
 
 type-check:
-	mypy pytorch_bfo_optimizer
+	$(VENV_PYTHON) -m mypy src/bfo_torch
 
 format:
-	black pytorch_bfo_optimizer tests examples
+	$(VENV_PYTHON) -m black src/bfo_torch tests examples
 
 docs:
-	cd docs && sphinx-build -b html . _build/html
+	$(VENV_PYTHON) -m sphinx-build -b html docs/ docs/_build/html
 
 build:
-	python -m build
+	$(VENV_PYTHON) -m build
 
 clean:
-	rm -rf build/ dist/ *.egg-info/
-	rm -rf .pytest_cache/ .mypy_cache/
-	rm -rf htmlcov/ .coverage
-	rm -rf docs/_build/
-	find . -type d -name __pycache__ -exec rm -rf {} +
+	rm -rf build/ dist/ *.egg-info/ .pytest_cache/ .mypy_cache/ htmlcov/ .coverage docs/_build/
+	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete

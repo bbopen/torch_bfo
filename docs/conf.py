@@ -7,9 +7,9 @@ import sys
 sys.path.insert(0, os.path.abspath('..'))
 
 # Project information
-project = 'pytorch_bfo_optimizer'
-copyright = '2025, Brett Bonner'
-author = 'Brett Bonner'
+project = 'bfo-torch'
+copyright = '2024, Brett G. Bonner'
+author = 'Brett G. Bonner'
 release = '0.1.0'
 
 # General configuration

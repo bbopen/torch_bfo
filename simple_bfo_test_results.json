@@ -1,0 +1,57 @@
+{
+  "sphere_function": {
+    "initial_loss": 5.995138645172119,
+    "final_loss": 5.722824436560359e-09,
+    "improvement": 5.995138639449294,
+    "success": true
+  },
+  "rosenbrock_function": {
+    "initial_loss": 140.06253051757812,
+    "final_loss": 1.3745449223279138e-11,
+    "improvement": 140.06253051756437,
+    "success": true
+  },
+  "optimizer_variants": {
+    "BFO": {
+      "initial_loss": 15.071884155273438,
+      "final_loss": 3.3729585791064665e-10,
+      "improvement": 15.071884154936141,
+      "success": true
+    },
+    "AdaptiveBFO": {
+      "initial_loss": 2.3545644283294678,
+      "final_loss": 1.7286899689494817e-10,
+      "improvement": 2.354564428156599,
+      "success": true
+    },
+    "HybridBFO": {
+      "initial_loss": 15.473490715026855,
+      "final_loss": 1.392977538872131e-10,
+      "improvement": 15.473490714887557,
+      "success": true
+    }
+  },
+  "optimizer_comparison": {
+    "BFO": {
+      "initial_loss": 13.32988452911377,
+      "final_loss": 1.7274018326851603e-10,
+      "improvement": 13.32988452894103,
+      "time": 1.1439752578735352,
+      "success": true
+    },
+    "SGD": {
+      "initial_loss": 18.880645751953125,
+      "final_loss": 8.415112495422363,
+      "improvement": 10.465533256530762,
+      "time": 0.014027118682861328,
+      "success": false
+    },
+    "Adam": {
+      "initial_loss": 8.283629417419434,
+      "final_loss": 6.724828243255615,
+      "improvement": 1.5588011741638184,
+      "time": 0.0014350414276123047,
+      "success": false
+    }
+  }
+}
