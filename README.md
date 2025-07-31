@@ -37,6 +37,12 @@ def closure():
 optimizer.step(closure)
 ```
 
+The optimizer ships with aggressive defaults tuned from convergence analysis.
+`step_size_max` is enlarged to `1.0` and the Lévy exponent is heavier at
+`levy_alpha=1.9`. Additional reproduction and swim cycles are used and an
+optional local search phase can further refine the best solution after each
+iteration.
+
 ## Citation
 
 If you use this work in your research, please consider citing it:

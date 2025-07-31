@@ -25,3 +25,8 @@ from bfo_torch import BFO
 
 optimizer = BFO(model.parameters())
 ```
+
+The default configuration uses an enlarged search step (`step_size_max=1.0`) and
+a Lévy exponent of `1.9` for better exploration. Swarming is enabled and each
+optimization step includes more reproduction cycles. A simple optional local
+search can further refine the current best solution.

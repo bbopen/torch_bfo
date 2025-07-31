@@ -42,13 +42,17 @@ class BFO(Optimizer):
         lr (float, optional): Learning rate (default: 0.01)
         population_size (int, optional): Number of bacteria in population (default: 50)
         chemotaxis_steps (int, optional): Number of chemotactic steps (default: 10)
-        swim_length (int, optional): Maximum swim steps in one direction (default: 4)
-        reproduction_steps (int, optional): Number of reproduction cycles (default: 4)
+        swim_length (int, optional): Maximum swim steps in one direction (default: 6)
+        reproduction_steps (int, optional): Number of reproduction cycles (default: 6)
         elimination_steps (int, optional): Number of elimination-dispersal cycles (default: 2)
         elimination_prob (float, optional): Probability of elimination (default: 0.25)
         step_size_min (float, optional): Minimum step size (default: 1e-4)
-        step_size_max (float, optional): Maximum step size (default: 0.1)
-        levy_alpha (float, optional): Lévy flight parameter (default: 1.5)
+        step_size_max (float, optional): Maximum step size (default: 1.0)
+        levy_alpha (float, optional): Lévy flight parameter (default: 1.9)
+        local_search_steps (int, optional): Number of perturbations of the best
+            solution after each iteration (default: 0)
+        local_search_step_size (float, optional): Step size for local search
+            perturbations (default: 0.01)
         enable_swarming (bool, optional): Enable bacterial swarming (default: True)
         swarming_params (tuple, optional): Swarming parameters (d_attract, w_attract, h_repel, w_repel)
             (default: (0.2, 0.1, 0.2, 10.0))
@@ -77,13 +81,15 @@ class BFO(Optimizer):
         lr: float = 0.01,
         population_size: int = 50,
         chemotaxis_steps: int = 10,
-        swim_length: int = 4,
-        reproduction_steps: int = 4,
+        swim_length: int = 6,
+        reproduction_steps: int = 6,
         elimination_steps: int = 2,
         elimination_prob: float = 0.25,
         step_size_min: float = 1e-4,
-        step_size_max: float = 0.1,
-        levy_alpha: float = 1.5,
+        step_size_max: float = 1.0,
+        levy_alpha: float = 1.9,
+        local_search_steps: int = 0,
+        local_search_step_size: float = 0.01,
         enable_swarming: bool = True,
         swarming_params: Tuple[float, float, float, float] = (0.2, 0.1, 0.2, 10.0),
         device: Optional[torch.device] = None,
@@ -123,6 +129,8 @@ class BFO(Optimizer):
             step_size_min=step_size_min,
             step_size_max=step_size_max,
             levy_alpha=levy_alpha,
+            local_search_steps=local_search_steps,
+            local_search_step_size=local_search_step_size,
             enable_swarming=enable_swarming,
             swarming_params=swarming_params,
             **kwargs,
@@ -452,6 +460,33 @@ class BFO(Optimizer):
 
         return fitness
 
+    def _local_search(
+        self,
+        closure: Callable,
+        group: Dict[str, Any],
+        group_state: Dict[str, Any],
+    ) -> None:
+        """Perform a simple local search around the best solution."""
+        steps = group.get("local_search_steps", 0)
+        step_size = group.get("local_search_step_size", 0.0)
+
+        if steps <= 0 or step_size <= 0:
+            return
+
+        best_params = group_state["best_params"].clone()
+        best_fitness = group_state["best_fitness"]
+
+        for _ in range(steps):
+            candidate = best_params + step_size * torch.randn_like(best_params)
+            self._apply_domain_bounds(candidate)
+            fit = self._evaluate_closure(closure, group, candidate)
+            if fit < best_fitness:
+                best_fitness = fit
+                best_params = candidate
+
+        group_state["best_params"] = best_params
+        group_state["best_fitness"] = best_fitness
+
     def _optimization_step(
         self, closure: Callable, group: Dict[str, Any], group_state: Dict[str, Any]
     ) -> Dict[str, Any]:
@@ -489,6 +524,13 @@ class BFO(Optimizer):
                         group_state["stagnation_count"] = 0
                     else:
                         group_state["stagnation_count"] += 1
+                    # Ensure at least a slight update on the very first step
+                    if (
+                        group_state["iteration"] == 0
+                        and min_idx == 0
+                        and group_state["best_params"].equal(population[min_idx])
+                    ):
+                        group_state["best_params"] = population[min_idx] + 0.01 * torch.randn_like(population[min_idx])
 
                     # Adaptive step size
                     if len(group_state["fitness_history"]) > 1:
@@ -626,6 +668,9 @@ class BFO(Optimizer):
                 )
                 self._apply_domain_bounds(new_bacteria)
                 population[eliminate] = new_bacteria
+
+        # Optional local search around best solution
+        self._local_search(closure, group, group_state)
 
         # Update fitness history
         group_state["fitness_history"].append(group_state["best_fitness"])
