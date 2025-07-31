@@ -1,381 +1,53 @@
-# BFO-Torch: Bacterial Foraging Optimizer for PyTorch
+# bfo-torch
 
 [![PyPI version](https://badge.fury.io/py/bfo-torch.svg)](https://badge.fury.io/py/bfo-torch)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-1.9+-red.svg)](https://pytorch.org/)
-[![GitHub](https://img.shields.io/badge/GitHub-bbopen%2Ftorch__bfo-blue)](https://github.com/bbopen/torch_bfo)
 
-A PyTorch implementation of **Bacterial Foraging Optimization (BFO)** - a biologically-inspired optimization algorithm based on the foraging behavior of *E. coli* bacteria. This package provides production-ready optimizers that integrate seamlessly with PyTorch's ecosystem for training neural networks.
+A PyTorch implementation of the Bacterial Foraging Optimization (BFO) algorithm.
 
-## 🧬 Algorithm Overview
+## Installation
 
-Bacterial Foraging Optimization mimics the foraging behavior of bacteria through four key mechanisms:
-
-1. **Chemotaxis**: Bacteria move towards higher nutrient concentrations (better solutions)
-2. **Swarming**: Bacteria communicate and coordinate their movement
-3. **Reproduction**: Healthiest bacteria reproduce, eliminating weaker ones  
-4. **Elimination-Dispersal**: Random events force bacteria to explore new regions
-
-This natural optimization process is particularly effective for:
-- Non-convex optimization problems
-- Escaping local minima in deep neural networks
-- Problems with noisy or dynamic loss landscapes
-- Hyperparameter-sensitive models
-
-## 🚀 Key Features
-
-- **🎯 Three Optimizer Variants**: Standard BFO, Adaptive BFO, and Hybrid BFO
-- **⚡ PyTorch Native**: Full compatibility with PyTorch's optimizer API
-- **🔧 Device Agnostic**: Automatic CPU/GPU device handling with mixed precision support
-- **📊 State Management**: Complete state dict support for checkpointing and resuming
-- **🧪 Flexible Configuration**: Support for different optimization settings per parameter group
-- **🎨 torch.compile Ready**: Optimized for PyTorch 2.x compilation
-- **📈 Smart Convergence**: Built-in early stopping with convergence detection
-- **🔬 Battle-Tested**: Extensive test suite with comprehensive coverage
-
-## 📦 Installation
+You can install `bfo-torch` from PyPI:
 
 ```bash
-# Install from PyPI
 pip install bfo-torch
-
-# Install with examples and visualization tools
-pip install bfo-torch[examples]
-
-# Install development version from GitHub
-pip install git+https://github.com/bbopen/torch_bfo.git
-
-# Install in development mode
-git clone https://github.com/bbopen/torch_bfo.git
-cd torch_bfo
-pip install -e .[dev]
 ```
 
-### Requirements
+## Basic Usage
 
-- Python 3.8+
-- PyTorch 1.9+
-- NumPy 1.19+
-
-## 🏁 Quick Start
+Here's a simple example of how to use the `BFO` optimizer with a PyTorch model:
 
 ```python
 import torch
 import torch.nn as nn
 from bfo_torch import BFO
 
-# Create your model
-model = nn.Sequential(
-    nn.Linear(784, 256),
-    nn.ReLU(),
-    nn.Dropout(0.2),
-    nn.Linear(256, 128),
-    nn.ReLU(),
-    nn.Dropout(0.2),
-    nn.Linear(128, 10)
-)
+# Define model and data
+model = nn.Linear(10, 1).cuda()
+optimizer = BFO(model.parameters(), population_size=50)
 
-# Initialize BFO optimizer
-optimizer = BFO(
-    model.parameters(),
-    lr=0.01,                    # Learning rate
-    population_size=30,         # Number of bacteria
-    chemotaxis_steps=10,        # Chemotaxis iterations
-    early_stopping=True         # Enable convergence detection
-)
-
-# Training loop
-for epoch in range(100):
-    for batch_data, batch_targets in dataloader:
-        def closure():
-            optimizer.zero_grad()
-            output = model(batch_data)
-            loss = criterion(output, batch_targets)
-            return loss
-        
-        loss = optimizer.step(closure)
-        
-    print(f'Epoch {epoch}: Loss = {loss:.6f}')
-```
-
-## 🔄 Optimizer Variants
-
-### 1. BFO - Standard Bacterial Foraging Optimizer
-
-The classic BFO algorithm with all four bacterial mechanisms:
-
-```python
-from bfo_torch import BFO
-
-optimizer = BFO(
-    model.parameters(),
-    lr=0.01,                    # Learning rate (default: 0.01)
-    population_size=50,         # Number of bacteria (default: 50)
-    chemotaxis_steps=10,        # Chemotactic steps per generation (default: 10)
-    swim_length=4,              # Maximum swim steps in one direction (default: 4)
-    reproduction_steps=4,       # Reproduction frequency (default: 4)
-    elimination_steps=2,        # Elimination-dispersal frequency (default: 2)
-    elimination_prob=0.25,      # Probability of elimination (default: 0.25)
-    attraction_width=0.2,       # Width of attraction signal (default: 0.2)
-    attraction_height=0.1,      # Height of attraction signal (default: 0.1)
-    repulsion_width=10.0,       # Width of repulsion signal (default: 10.0)
-    repulsion_height=0.1,       # Height of repulsion signal (default: 0.1)
-    device=None,                # Device placement (default: auto-detect)
-    early_stopping=False,       # Enable convergence detection (default: False)
-    patience=20,                # Convergence patience (default: 20)
-    min_delta=1e-6              # Minimum improvement threshold (default: 1e-6)
-)
-```
-
-**Best for**: General optimization problems, initial experimentation, problems with unknown characteristics
-
-### 2. AdaptiveBFO - Self-Tuning Bacterial Foraging Optimizer
-
-Automatically adjusts population diversity and search radius based on optimization progress:
-
-```python
-from bfo_torch import AdaptiveBFO
-
-optimizer = AdaptiveBFO(
-    model.parameters(),
-    lr=0.01,                    # Initial learning rate
-    population_size=50,         # Initial population size
-    adaptation_rate=0.1,        # How quickly to adapt parameters (default: 0.1)
-    diversity_threshold=0.01,   # Minimum population diversity (default: 0.01)
-    min_population=10,          # Minimum population size (default: 10)
-    max_population=100,         # Maximum population size (default: 100)
-    **bfo_kwargs                # Additional BFO parameters
-)
-```
-
-**Features**:
-- Dynamic population size based on convergence speed
-- Adaptive search radius for better exploration/exploitation balance
-- Automatic parameter tuning during optimization
-
-**Best for**: Long training runs, problems where optimal hyperparameters are unknown, dynamic optimization landscapes
-
-### 3. HybridBFO - Gradient-Enhanced Bacterial Foraging
-
-Combines bacterial foraging with gradient information for faster convergence:
-
-```python
-from bfo_torch import HybridBFO
-
-optimizer = HybridBFO(
-    model.parameters(),
-    lr=0.01,                    # Learning rate
-    gradient_weight=0.3,        # Weight for gradient direction (default: 0.3)
-    momentum=0.9,               # Momentum factor (default: 0.9)
-    gradient_clip=1.0,          # Gradient clipping value (default: 1.0)
-    use_adam_moments=True,      # Use Adam-style moments (default: True)
-    beta1=0.9,                  # Adam beta1 (default: 0.9)
-    beta2=0.999,                # Adam beta2 (default: 0.999)
-    **bfo_kwargs                # Additional BFO parameters
-)
-```
-
-**Features**:
-- Leverages gradient information while maintaining BFO exploration
-- Optional Adam-style adaptive moments
-- Gradient clipping for stability
-- Faster convergence on smooth landscapes
-
-**Best for**: Deep neural networks, problems with reliable gradients, fine-tuning pre-trained models
-
-## 💡 Advanced Usage
-
-### Multi-GPU Training
-
-```python
-# DataParallel
-model = nn.DataParallel(model)
-optimizer = BFO(model.parameters(), lr=0.01)
-
-# DistributedDataParallel
-model = nn.parallel.DistributedDataParallel(model)
-optimizer = BFO(model.parameters(), lr=0.01)
-```
-
-### Mixed Precision Training
-
-```python
-from torch.cuda.amp import autocast, GradScaler
-
-scaler = GradScaler()
-optimizer = HybridBFO(model.parameters(), lr=0.01)
-
+# Define closure for BFO
 def closure():
     optimizer.zero_grad()
-    with autocast():
-        output = model(data)
-        loss = criterion(output, target)
-    return loss
+    output = model(data)
+    loss = criterion(output, target)
+    return loss.item()
 
-# BFO handles the scaling internally
-loss = optimizer.step(closure)
+# Optimization step
+optimizer.step(closure)
 ```
 
-### Learning Rate Scheduling
+## Citation
 
-```python
-optimizer = BFO(model.parameters(), lr=0.1)
-scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=100)
-
-for epoch in range(100):
-    # Training loop
-    loss = optimizer.step(closure)
-    scheduler.step()
-```
-
-### Checkpointing
-
-```python
-# Save checkpoint
-checkpoint = {
-    'epoch': epoch,
-    'model_state_dict': model.state_dict(),
-    'optimizer_state_dict': optimizer.state_dict(),
-    'loss': loss,
-}
-torch.save(checkpoint, 'checkpoint.pth')
-
-# Load checkpoint
-checkpoint = torch.load('checkpoint.pth')
-model.load_state_dict(checkpoint['model_state_dict'])
-optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-```
-
-### Parameter Groups
-
-```python
-# Different learning rates for different layers
-optimizer = BFO([
-    {'params': model.conv_layers.parameters(), 'lr': 0.001},
-    {'params': model.fc_layers.parameters(), 'lr': 0.01}
-], population_size=30)
-```
-
-## 🎯 When to Use Each Optimizer
-
-| Optimizer | Best Use Cases | Advantages | Considerations |
-|-----------|---------------|------------|----------------|
-| **BFO** | • Exploration-heavy problems<br>• Non-convex optimization<br>• Unknown loss landscapes | • No gradient required<br>• Excellent exploration<br>• Escapes local minima | • Slower convergence<br>• More function evaluations |
-| **AdaptiveBFO** | • Long training runs<br>• Dynamic datasets<br>• Online learning | • Self-tuning parameters<br>• Adapts to problem<br>• Maintains diversity | • More complex<br>• Initial exploration phase |
-| **HybridBFO** | • Deep neural networks<br>• Fine-tuning<br>• Known good initializations | • Faster convergence<br>• Gradient-informed<br>• Best of both worlds | • Requires gradients<br>• Can still get stuck |
-
-## 📊 Performance Considerations
-
-### Computational Complexity
-
-- **Time Complexity**: O(N × P × D) where N = chemotaxis steps, P = population size, D = parameter dimension
-- **Space Complexity**: O(P × D) for storing bacterial population
-
-### Tuning Guidelines
-
-1. **Population Size**: 
-   - Larger populations = better exploration but slower
-   - Start with 30-50 for most problems
-   - Increase for high-dimensional problems
-
-2. **Chemotaxis Steps**:
-   - More steps = more thorough local search
-   - 10-20 works well for most problems
-   - Reduce for faster iterations
-
-3. **Learning Rate**:
-   - Similar to SGD learning rates
-   - BFO is less sensitive than gradient methods
-   - Start with 0.01-0.1
-
-4. **Early Stopping**:
-   - Enable for automatic convergence detection
-   - Adjust `patience` based on problem noise
-   - Monitor with `optimizer.converged`
-
-## 🛠️ Development
-
-### Running Tests
-
-```bash
-# Run all tests
-pytest tests/
-
-# Run with coverage
-pytest tests/ --cov=bfo_torch --cov-report=html
-
-# Run specific test
-pytest tests/test_optimizer.py::test_bfo_convergence
-```
-
-### Code Quality
-
-```bash
-# Format code
-black bfo_torch/ tests/
-
-# Sort imports
-isort bfo_torch/ tests/
-
-# Type checking
-mypy bfo_torch/
-
-# Linting
-flake8 bfo_torch/ tests/
-```
-
-## 📚 Examples
-
-Check out the [examples/](https://github.com/bbopen/torch_bfo/tree/main/examples) directory for:
-
-- **basic_usage.py**: Simple optimization examples
-- **mnist_training.py**: Training CNNs on MNIST
-- **comparison.py**: Comparing BFO variants with standard optimizers
-- **visualization.py**: Visualizing optimization trajectories
-- **hyperparameter_tuning.py**: Finding optimal BFO parameters
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/bbopen/torch_bfo/blob/main/LICENSE) file for details.
-
-## 📖 Citation
-
-If you use BFO-Torch in your research, please cite:
+If you use this work in your research, please consider citing it:
 
 ```bibtex
 @software{bfo-torch,
   author = {Brett G. Bonner},
-  title = {BFO-Torch: Bacterial Foraging Optimizer for PyTorch},
+  title = {bfo-torch: Bacterial Foraging Optimization for PyTorch},
   year = {2024},
   publisher = {GitHub},
-  url = {https://github.com/bbopen/torch_bfo}
+  journal = {GitHub repository},
+  howpublished = {\\url{https://github.com/bbopen/torch_bfo}},
 }
 ```
-
-## 🙏 Acknowledgments
-
-- Inspired by the original BFO algorithm by Passino (2002)
-- Built on top of PyTorch's excellent optimizer framework
-- Thanks to the PyTorch community for continuous support
-
-## 📞 Contact
-
-- **Author**: Brett G. Bonner
-- **GitHub**: [@bbopen](https://github.com/bbopen)
-- **Repository**: [https://github.com/bbopen/torch_bfo](https://github.com/bbopen/torch_bfo)
-- **Issues**: [https://github.com/bbopen/torch_bfo/issues](https://github.com/bbopen/torch_bfo/issues)
-
----
-
-**Note**: This is an implementation of the Bacterial Foraging Optimization algorithm for PyTorch. It is not officially affiliated with PyTorch or Meta AI.

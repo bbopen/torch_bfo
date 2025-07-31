@@ -1,0 +1,30 @@
+P1 Background Experiment Progress Log
+==================================================
+
+[2025-07-29 08:31:22] Starting P0_Enhanced_BFO...
+[2025-07-29 08:31:28]   P0_Enhanced_BFO: Completed 5/10 runs
+[2025-07-29 08:31:34]   P0_Enhanced_BFO: Completed 10/10 runs
+[2025-07-29 08:31:35]   P0_Enhanced_BFO: Success rate = 20.0%, Mean loss = 389.09
+[2025-07-29 08:31:35] Starting P1_Chaotic_BFO...
+[2025-07-29 08:31:40]   P1_Chaotic_BFO: Completed 5/10 runs
+[2025-07-29 08:31:46]   P1_Chaotic_BFO: Completed 10/10 runs
+[2025-07-29 08:31:48]   P1_Chaotic_BFO: Success rate = 0.0%, Mean loss = 378.11
+[2025-07-29 08:31:48] Starting P1_NoGA...
+[2025-07-29 08:31:52]   P1_NoGA: Completed 5/10 runs
+[2025-07-29 08:31:58]   P1_NoGA: Completed 10/10 runs
+[2025-07-29 08:32:00]   P1_NoGA: Success rate = 0.0%, Mean loss = 335.03
+[2025-07-29 08:32:00] Starting P1_NoChaos...
+[2025-07-29 08:32:04]   P1_NoChaos: Completed 5/10 runs
+[2025-07-29 08:32:10]   P1_NoChaos: Completed 10/10 runs
+[2025-07-29 08:32:12]   P1_NoChaos: Success rate = 0.0%, Mean loss = 439.92
+[2025-07-29 08:32:12] Starting P1_NoDiversity...
+[2025-07-29 08:32:16]   P1_NoDiversity: Completed 5/10 runs
+[2025-07-29 08:32:23]   P1_NoDiversity: Completed 10/10 runs
+[2025-07-29 08:32:24]   P1_NoDiversity: Success rate = 0.0%, Mean loss = 625.52
+[2025-07-29 08:32:24] Starting P1_All_100k...
+[2025-07-29 08:32:33]   P1_All_100k: Completed 5/10 runs
+[2025-07-29 08:32:46]   P1_All_100k: Completed 10/10 runs
+[2025-07-29 08:32:48]   P1_All_100k: Success rate = 10.0%, Mean loss = 203.98
+[2025-07-29 08:32:48] All experiments completed. Generating report...
+[2025-07-29 08:32:48] Report saved to: p1_background_report.txt
+[2025-07-29 08:32:48] Done!

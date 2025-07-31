@@ -5,7 +5,7 @@ Demonstrates usage with PyTorch 2.8+ and torch.compile
 
 import torch
 import torch.nn as nn
-from pytorch_bfo_optimizer import BFO, AdaptiveBFO, HybridBFO
+from bfo_torch import BFO, AdaptiveBFO, HybridBFO
 import time
 import matplotlib.pyplot as plt
 

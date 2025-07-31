@@ -1,0 +1,244 @@
+{
+  "search_summary": {
+    "pypi_packages_found": 0,
+    "github_repositories_found": 12,
+    "academic_papers_found": 3,
+    "matlab_implementations_found": 2
+  },
+  "pypi_results": [
+    {
+      "term": "bacterial foraging",
+      "found": false,
+      "url": "https://pypi.org/search/?q=bacterial foraging"
+    },
+    {
+      "term": "bfo",
+      "found": false,
+      "url": "https://pypi.org/search/?q=bfo"
+    },
+    {
+      "term": "bacterial optimization",
+      "found": false,
+      "url": "https://pypi.org/search/?q=bacterial optimization"
+    },
+    {
+      "term": "foraging optimization",
+      "found": false,
+      "url": "https://pypi.org/search/?q=foraging optimization"
+    }
+  ],
+  "github_results": [
+    {
+      "name": "MunichBFOR",
+      "full_name": "dananjayamahesh/MunichBFOR",
+      "description": "MuNic-BFor: Multi-Niche Bacterial Foraging (Evolutionary) Algorithm for Multimodal Dynamic Optimizations (intially developed for hyper-parameter  optimizations of neural networks)",
+      "url": "https://github.com/dananjayamahesh/MunichBFOR",
+      "stars": 6,
+      "language": "Python",
+      "query": "bacterial foraging optimization"
+    },
+    {
+      "name": "BFOA",
+      "full_name": "poluyan/BFOA",
+      "description": "Bacterial Foraging Optimization Algorithm in C",
+      "url": "https://github.com/poluyan/BFOA",
+      "stars": 5,
+      "language": "C",
+      "query": "bacterial foraging optimization"
+    },
+    {
+      "name": "PSO-Algo",
+      "full_name": "Mehreen839/PSO-Algo",
+      "description": "Particle Swarm Optimization (originaly proposed to simulate birds searching for food, the movement of fishes\u2019 shoal, etc.) is able to simulate behaviors of swarms in order to optimize a numeric problem iteratively. It can be classified as a swarm intelligence algorithm like Ant Colony Algorithm, Artificial Bee Colony Algorithm and Bacterial Foraging, for example.",
+      "url": "https://github.com/Mehreen839/PSO-Algo",
+      "stars": 3,
+      "language": "Python",
+      "query": "bacterial foraging optimization"
+    },
+    {
+      "name": "BFO",
+      "full_name": "egortro42/BFO",
+      "description": "Bacterial Foraging Optimization Algorithm with PyPlot",
+      "url": "https://github.com/egortro42/BFO",
+      "stars": 2,
+      "language": "Python",
+      "query": "bacterial foraging optimization"
+    },
+    {
+      "name": "Image-Enhancement-ABFOA",
+      "full_name": "ArpitNagpal96/Image-Enhancement-ABFOA",
+      "description": "Enhancement of color images using fuzzy logic mechanism with distinctive measure as exposure and optimization of cost function (combination of visual factors and entropy of image) using Modified Bacterial Foraging Algorithm",
+      "url": "https://github.com/ArpitNagpal96/Image-Enhancement-ABFOA",
+      "stars": 2,
+      "language": "MATLAB",
+      "query": "bacterial foraging optimization"
+    },
+    {
+      "name": "code_FLNN",
+      "full_name": "chasebk/code_FLNN",
+      "description": "Prediction google trace data using Functional Link Neural Network and Optimization Algorithms such as GA, PSO, ABC,...",
+      "url": "https://github.com/chasebk/code_FLNN",
+      "stars": 49,
+      "language": "Python",
+      "query": "bfo algorithm"
+    },
+    {
+      "name": "easea",
+      "full_name": "EASEA/easea",
+      "description": "EASEA (EAsy Specification of Evolutionary Algorithms) is an Artificial Evolution platform developped  by the SONIC (Stochastic Optimisation and Nature Inspired Computing) group of the BFO team at Universit\u00e9 de Strasbourg.",
+      "url": "https://github.com/EASEA/easea",
+      "stars": 18,
+      "language": "C++",
+      "query": "bfo algorithm"
+    },
+    {
+      "name": "easy_BFopensslCTF",
+      "full_name": "carlospolop/easy_BFopensslCTF",
+      "description": "Bash script that given a password (or a wordlist) tries to decrypt an OpenSSL encrypted file using several algorithms.",
+      "url": "https://github.com/carlospolop/easy_BFopensslCTF",
+      "stars": 11,
+      "language": "Shell",
+      "query": "bfo algorithm"
+    },
+    {
+      "name": "MunichBFOR",
+      "full_name": "dananjayamahesh/MunichBFOR",
+      "description": "MuNic-BFor: Multi-Niche Bacterial Foraging (Evolutionary) Algorithm for Multimodal Dynamic Optimizations (intially developed for hyper-parameter  optimizations of neural networks)",
+      "url": "https://github.com/dananjayamahesh/MunichBFOR",
+      "stars": 6,
+      "language": "Python",
+      "query": "bfo algorithm"
+    },
+    {
+      "name": "BFOA",
+      "full_name": "poluyan/BFOA",
+      "description": "Bacterial Foraging Optimization Algorithm in C",
+      "url": "https://github.com/poluyan/BFOA",
+      "stars": 5,
+      "language": "C",
+      "query": "bfo algorithm"
+    },
+    {
+      "name": "BFOADianaArevaloMejora",
+      "full_name": "Arevalo023/BFOADianaArevaloMejora",
+      "description": "Optimizaci\u00f3n de alineamiento de secuencias con BFOA en Python Este proyecto aplica el algoritmo BFOA (Bacterial Foraging Optimization Algorithm) para realizar alineamientos m\u00faltiples de secuencias biol\u00f3gicas usando una matriz BLOSUM62. ",
+      "url": "https://github.com/Arevalo023/BFOADianaArevaloMejora",
+      "stars": 0,
+      "language": "Jupyter Notebook",
+      "query": "bacterial foraging python"
+    },
+    {
+      "name": "BFO",
+      "full_name": "m01marpor/BFO",
+      "description": "BFO (Brute-Force Optimizer), a Matlab package to solve unconstrained or bound-constrained optimization in continuous and/or discrete and/or categorical variables. ",
+      "url": "https://github.com/m01marpor/BFO",
+      "stars": 17,
+      "language": "MATLAB",
+      "query": "bfo matlab"
+    }
+  ],
+  "paper_results": [
+    {
+      "title": "Bacterial Foraging Optimization Algorithm: Theoretical Foundations, Analysis, and Applications",
+      "authors": "Passino, K.M.",
+      "year": 2002,
+      "journal": "IEEE Transactions on Evolutionary Computation",
+      "url": "https://ieeexplore.ieee.org/document/1003452"
+    },
+    {
+      "title": "Bacterial Foraging Optimization",
+      "authors": "Das, S., Biswas, A., Dasgupta, S., Abraham, A.",
+      "year": 2009,
+      "journal": "Studies in Computational Intelligence",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-642-01085-9_6"
+    },
+    {
+      "title": "Bacterial Foraging Optimization Algorithm for Neural Network Training",
+      "authors": "Mishra, S.",
+      "year": 2006,
+      "journal": "IEEE Transactions on Neural Networks",
+      "url": "https://ieeexplore.ieee.org/document/1617396"
+    }
+  ],
+  "matlab_results": [
+    {
+      "name": "MATLAB BFO Implementation",
+      "url": "https://www.mathworks.com/matlabcentral/fileexchange/23216-bacterial-foraging-optimization",
+      "author": "S. Das",
+      "description": "Standard BFO implementation in MATLAB"
+    },
+    {
+      "name": "BFO for Neural Network Training",
+      "url": "https://github.com/search?q=bfo+matlab",
+      "author": "Various",
+      "description": "BFO implementations for neural network optimization"
+    }
+  ],
+  "implementation_comparison": {
+    "our_implementation": {
+      "name": "bfo_torch",
+      "language": "Python",
+      "framework": "PyTorch",
+      "features": [
+        "Standard BFO algorithm",
+        "Adaptive BFO variant",
+        "Hybrid BFO with gradient information",
+        "Vectorized operations",
+        "GPU support",
+        "Early stopping",
+        "State persistence",
+        "Multiple parameter groups",
+        "Mixed precision support"
+      ],
+      "optimization_problems": [
+        "Neural network training",
+        "Mathematical optimization",
+        "Hyperparameter optimization"
+      ]
+    },
+    "found_implementations": [
+      {
+        "name": "MunichBFOR",
+        "description": "MuNic-BFor: Multi-Niche Bacterial Foraging (Evolutionary) Algorithm for Multimodal Dynamic Optimizations (intially developed for hyper-parameter  optimizations of neural networks)",
+        "language": "Python",
+        "stars": 6,
+        "forks": 2,
+        "readme_content": "\n# MuNic-BFor\n**MuNicBFOr** is a library of evolutionary algorithms, specifically Bacterial Foraging, that was developed as an extension to SwarmPackagePy. It includes a class of optimization algorithms and each can be used for solving specific optimization problem. You can find the principles they operate on and pseudo codes  below. <br>\n\nyou can also access the presentation here for more details\nhttps://github.com/dananjayamahesh/MunichBFOR/blob/master/MuNichBFor.pdf\n\n![Alt Text](https://gifs.com/gif/munichbfor-v2-multiniche-sharing-v4-gLoOz9)\n\n[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=fmaSxDJ3qxg)\n\nProvides:<br>\n- BFO optimization algorithms.\n- Advanced BFO optimization algorithms.\n- Deep Neural Network Optimizations with MunichBFOR.\n- Non-Convex Revenue Optimization with MunichBFOR.\n- Test functions for BFO algorithms.\n- Animation of minimum find process.<br>\n<br>Every algorithm has arguments listed below:<br>\n- **n**: number of agents\n- ",
+        "url": "https://github.com/dananjayamahesh/MunichBFOR",
+        "detected_features": []
+      },
+      {
+        "name": "BFOA",
+        "description": "Bacterial Foraging Optimization Algorithm in C",
+        "language": "C",
+        "stars": 5,
+        "forks": 5,
+        "readme_content": "BFOA\n====\n\nBacterial Foraging Optimization Algorithm in C\n\n| Tumble and swim steps of single bacterium | Swarm size controlled by attractant/repellant width |\n| :---: | :---: |\n|        ![](./maps/outfile0.png)         |        ![](./maps/outfile1.png)         |\n\n\n\n| Chemotactic/reproduction/dispersal steps | Formation of mutiple swarms and their competition |\n| :---: | :---: |\n|        ![](./maps/outfile2.png)         |        ![](./maps/outfile3.png)         |",
+        "url": "https://github.com/poluyan/BFOA",
+        "detected_features": []
+      },
+      {
+        "name": "PSO-Algo",
+        "description": "Particle Swarm Optimization (originaly proposed to simulate birds searching for food, the movement of fishes\u2019 shoal, etc.) is able to simulate behaviors of swarms in order to optimize a numeric problem iteratively. It can be classified as a swarm intelligence algorithm like Ant Colony Algorithm, Artificial Bee Colony Algorithm and Bacterial Foraging, for example.",
+        "language": "Python",
+        "stars": 3,
+        "forks": 0,
+        "readme_content": "# PSO-Algo\n#Particle Swarm Optimization (originaly proposed to simulate birds searching for food, the movement of fishes\u2019 shoal, etc.) is able to simulate behaviors of swarms in order to optimize a numeric problem iteratively. It can be classified as a swarm intelligence algorithm like Ant Colony Algorithm, Artificial Bee Colony Algorithm and Bacterial Foraging, for example.\nimport random\nimport numpy as np \n\nW = 0.5\nc1 = 0.8\nc2 = 0.9 \n\nn_iterations = int(input(\"Inform the number of iterations: \"))\ntarget_error = float(input(\"Inform the target error: \"))\nn_particles = int(input(\"Inform the number of particles: \"))\n\nclass Particle():\n    def __init__(self):\n        self.position = np.array([(-1) ** (bool(random.getrandbits(1))) * random.random()*50, (-1)**(bool(random.getrandbits(1))) * random.random()*50])\n        self.pbest_position = self.position\n        self.pbest_value = float('inf')\n        self.velocity = np.array([0,0])\n\n    def __str__(self):\n        print(\"I am at \", self.pos",
+        "url": "https://github.com/Mehreen839/PSO-Algo",
+        "detected_features": []
+      }
+    ],
+    "feature_comparison": {
+      "total_unique_features": 9,
+      "our_feature_count": 9,
+      "feature_coverage": {}
+    }
+  },
+  "recommendations": [
+    "1. Our bfo_torch implementation appears to be comprehensive and modern",
+    "2. Consider benchmarking against MATLAB implementations for validation",
+    "3. Academic papers provide theoretical foundation for verification",
+    "4. GitHub repositories may contain useful test cases and examples",
+    "5. Consider implementing additional BFO variants found in literature"
+  ]
+}
