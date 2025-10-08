@@ -1,0 +1,115 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bfo-torch"
+version = "1.0.0"
+description = "PyTorch Bacterial Foraging Optimizer - Biologically-inspired optimization for deep learning"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "Brett G. Bonner"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers", 
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9", 
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Framework :: PyTorch",
+]
+keywords = ["pytorch", "optimizer", "bfo", "bacterial", "foraging", "optimization", "machine", "learning", "deep", "learning"]
+requires-python = ">=3.8"
+dependencies = [
+    "torch>=1.9.0",
+    "numpy>=1.19.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0.0",
+    "pytest-cov>=2.10.0",
+    "ruff>=0.1.0",
+    "mypy>=0.800",
+]
+examples = [
+    "matplotlib>=3.3.0",
+    "scikit-learn>=0.24.0", 
+    "torchvision>=0.10.0",
+]
+docs = [
+    "sphinx>=4.0.0",
+    "sphinx-rtd-theme>=0.5.0",
+    "myst-parser>=0.15.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/bbopen/bfo_torch"
+Documentation = "https://github.com/bbopen/bfo_torch/wiki"
+Repository = "https://github.com/bbopen/bfo_torch"
+"Bug Tracker" = "https://github.com/bbopen/bfo_torch/issues"
+
+[project.scripts]
+# bfo-torch-benchmark = "bfo_torch.examples.benchmark:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+
+# Enable linting and formatting
+lint.select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+]
+
+lint.ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B007",  # unused loop control variables (intentional iteration counters)
+    "B008",  # function calls in argument defaults
+    "B904",  # raise from None
+]
+
+# Exclude directories
+extend-exclude = [
+    ".eggs",
+    ".git",
+    ".mypy_cache",
+    ".tox",
+    ".venv",
+    "build",
+    "dist",
+]
+
+# Import sorting (isort replacement)
+lint.isort.known-first-party = ["bfo_torch"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = [
+    "tests",
+]
